@@ -1,0 +1,4 @@
+appName: deadlock-repro
+gitopsRepoUrl: https://github.com/jfillman/gitops-deadlock-repro.git
+githubOwner: jfillman
+env: verify

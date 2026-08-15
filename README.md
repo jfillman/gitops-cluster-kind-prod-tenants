@@ -30,7 +30,10 @@ tenants/
 `gitops-cluster-dev-tenants`, `app.yaml` here is *not* written by
 `NodeJSApplication` (that XRD only ever writes its own `devCluster`'s copy). Every
 `ApplicationEnvironment` targeting this cluster for a given app writes `app.yaml`
-unconditionally and idempotently, with `deletionPolicy: Orphan` — deleting one env's
+unconditionally and idempotently, with `managementPolicies` excluding `"Delete"`
+(not `spec.deletionPolicy: Orphan` — `provider-upjet-github`'s `RepositoryFile` CRD
+has no such field, confirmed live via a real `ReconcileError`; this provider version
+uses the newer `ManagementPolicies` mechanism exclusively) — deleting one env's
 `ApplicationEnvironment` XR must never delete this cluster-shared file out from
 under a sibling env still using it. Cleaning it up when an app is fully
 decommissioned from this cluster is a deliberate, separate cluster-admin action, not
@@ -40,4 +43,8 @@ automatic — see `idp/docs/service-catalog-design.md` §0 for the full reasonin
 
 Bootstrapped 2026-08-15 alongside `gitops-cluster-kind-prod` and the new cluster
 registry (`gitops-cluster-dev/00-bootstrap/cluster-registry/`) — the first real
-upper-env cluster in this fleet.
+upper-env cluster in this fleet. Live-verified the same day with a throwaway app:
+both `app.yaml` and `<env>/identity.yaml` committed with real, correct content, this
+repo's own `tenant-appprojects`/`tenant-onboarding` `ApplicationSet`s picking both up
+unprompted, and the orphaned-`app.yaml` teardown behavior (survives the env's own XR
+deletion, needs a manual follow-up commit) confirmed exactly as designed.

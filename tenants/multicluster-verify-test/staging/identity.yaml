@@ -1,0 +1,4 @@
+appName: multicluster-verify-test
+gitopsRepoUrl: https://github.com/jfillman/gitops-multicluster-verify-test.git
+githubOwner: jfillman
+env: staging

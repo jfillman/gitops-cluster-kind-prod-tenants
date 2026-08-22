@@ -2,3 +2,4 @@ appName: checkout-api
 gitopsRepoUrl: https://github.com/jfillman/gitops-checkout-api
 githubOwner: jfillman
 env: prod
+configMapGenerator: true

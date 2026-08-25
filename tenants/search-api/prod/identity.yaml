@@ -1,0 +1,4 @@
+appName: search-api
+gitopsRepoUrl: https://github.com/jfillman/gitops-search-api
+githubOwner: jfillman
+env: prod

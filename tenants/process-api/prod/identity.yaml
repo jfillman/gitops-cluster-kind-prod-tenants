@@ -1,0 +1,4 @@
+appName: process-api
+gitopsRepoUrl: https://github.com/jfillman/gitops-process-api
+githubOwner: jfillman
+env: prod

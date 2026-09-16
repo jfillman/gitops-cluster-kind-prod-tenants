@@ -1,4 +1,0 @@
-appName: order-api
-gitopsRepoUrl: https://github.com/jfillman/gitops-order-api
-githubOwner: jfillman
-env: pre-prod
